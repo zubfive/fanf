@@ -1,9 +1,9 @@
 "use client";
 
+import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { useRef } from "react";
+import { Button } from "@/components/ui/button";
 
 // Sample product data (Replace with dynamic API data later)
 const products = [
@@ -40,48 +40,51 @@ const products = [
 ];
 
 export default function OurProducts() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
   return (
-    <section className="py-20 px-10 bg-purple-100 overflow-hidden">
+    <section className="py-20 bg-purple-100 px-10 overflow-hidden">
       <h2 className="text-4xl font-semibold text-center text-purple-800 mb-10">
         Our Products
       </h2>
 
-      <motion.div className="cursor-grab overflow-hidden" ref={scrollRef}>
+      <div className="relative w-full overflow-hidden">
         <motion.div
-          drag="x"
-          dragConstraints={{ right: 0, left: -((products.length - 2) * 320) }} // Adjust drag range dynamically
-          className="flex gap-8 w-max"
+          className="flex space-x-6 w-max"
+          initial={{ x: 0 }}
+          animate={{ x: "-50%" }} // Moves left by half of the content width
+          transition={{
+            repeat: Infinity,
+            ease: "linear",
+            duration: 40, // Slow smooth scrolling
+          }}
         >
-          {products.map((product, index) => (
-            <motion.div
-              key={product.id}
-              className="p-6 bg-white shadow-lg rounded-xl border border-gray-200 text-center min-w-[300px]"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              whileHover={{ scale: 1.05 }}
+          {[...products, ...products].map((product, index) => (
+            <Card
+              key={index}
+              className="p-6 w-80 bg-white rounded-3xl shadow-lg shadow-purple-300 border border-purple-300 flex-shrink-0"
             >
-              <Image
-                src={product.image}
-                alt={product.name}
-                width={300}
-                height={200}
-                className="w-full h-48 object-cover rounded-lg"
-                priority
-              />
-              <h3 className="text-2xl font-bold text-purple-700 mt-4">
-                {product.name}
-              </h3>
-              <p className="text-gray-600 mt-3">{product.description}</p>
-              <Button className="mt-4 bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700">
-                Buy Now
-              </Button>
-            </motion.div>
+              {/* Product Image */}
+              <div className="w-full h-40 bg-white rounded-xl flex items-center justify-center overflow-hidden">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  width={160}
+                  height={160}
+                  className="w-full h-full object-cover rounded-xl"
+                />
+              </div>
+
+              {/* Product Info */}
+              <CardContent className="mt-5 text-center">
+                <h3 className="text-purple-900 font-bold text-lg">{product.name}</h3>
+                <p className="text-purple-800 italic mt-2">{product.description}</p>
+                <Button className="mt-4 bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700">
+                  Buy Now
+                </Button>
+              </CardContent>
+            </Card>
           ))}
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }
