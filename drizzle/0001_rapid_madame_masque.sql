@@ -1,0 +1,1 @@
+ALTER TABLE "fanf_contactus" ADD COLUMN "phoneNumber" integer;
