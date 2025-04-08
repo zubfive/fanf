@@ -70,7 +70,7 @@ export default function OurProducts() {
   return (
     <section className="py-20 bg-purple-100 px-10">
       <h2 className="text-4xl font-semibold text-center text-purple-800 mb-10">
-        Our Products
+        Our Flowers
       </h2>
 
       <div className="relative max-w-7xl mx-auto">

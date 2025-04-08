@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import ContactForm from "./_components/contact";
 import Testimonials from "./_components/testimonials";
 import HeroSection from "./_components/hero";
-import ServicesSection from "./_components/service";
 import OurProducts from "./_components/products";
 import EventsSection from "./_components/events";
 import Navbar from "./_components/navbar";
@@ -11,7 +10,7 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   useEffect(() => {
-    document.title = "Ficus and Flowers | Elegant Floral Subscriptions & Events";
+    document.title = "Ficus and Flowers | Premium Floral Arrangements & Events";
   }, []);
 
   return (
@@ -20,17 +19,16 @@ export default function Home() {
       
       <HeroSection />
       
-      <div id="services">
-        <ServicesSection />
+      <div id="flowers">
+        <OurProducts />
       </div>
+      
       
       <div id="events">
         <EventsSection />
       </div>
       
-      <div id="products">
-        <OurProducts />
-      </div>
+
       
       <div id="testimonials">
         <Testimonials />
@@ -60,12 +58,12 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h4 className="text-lg font-semibold mb-4">Services</h4>
+              <h4 className="text-lg font-semibold mb-4">Our Offerings</h4>
               <ul className="space-y-2 text-purple-100">
-                <li>Flower Subscriptions</li>
-                <li>Event Management</li>
-                <li>Custom Arrangements</li>
-                <li>Corporate Services</li>
+                <li>Fresh Flower Arrangements</li>
+                <li>Event Decoration</li>
+                <li>Custom Bouquets</li>
+                <li>Corporate Events</li>
               </ul>
             </motion.div>
             <motion.div

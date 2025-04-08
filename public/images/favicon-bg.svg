@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Purple background -->
+  <rect width="512" height="512" fill="#8a4baf" rx="80" ry="80" />
+  
+  <!-- Logo image with absolute path -->
+  <image x="128" y="128" width="256" height="256" xlink:href="/images/favicon/favicon-logo.png" />
+</svg> 

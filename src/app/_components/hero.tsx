@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Flower, ArrowDown } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 
 export default function HeroSection() {
   const ref = useRef(null);
@@ -14,6 +14,16 @@ export default function HeroSection() {
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  const [windowSize, setWindowSize] = useState({ width: 1200, height: 800 });
+
+  useEffect(() => {
+    // Only access window in client-side
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+  }, []);
 
   return (
     <motion.section 
@@ -37,13 +47,13 @@ export default function HeroSection() {
         className="absolute inset-0 overflow-hidden"
         style={{ y, opacity }}
       >
-        {[...Array(5)].map((_, i) => (
+        {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute"
-            initial={{ 
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+            initial={{
+              x: Math.random() * windowSize.width,
+              y: Math.random() * windowSize.height,
               rotate: Math.random() * 360,
               scale: 0.5 + Math.random() * 0.5
             }}

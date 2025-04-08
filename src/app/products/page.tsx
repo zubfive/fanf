@@ -90,7 +90,7 @@ export default function ProductsPage() {
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-purple-900 mb-4">Our Products</h1>
+          <h1 className="text-4xl font-bold text-purple-900 mb-4">Our Flowers</h1>
           <div className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
