@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Flower, Calendar, Building2, Home, Utensils, Hotel } from "lucide-react";
+import { Home, Utensils, Hotel } from "lucide-react";
 
 const services = [
   {

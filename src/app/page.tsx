@@ -49,7 +49,7 @@ export default function Home() {
             >
               <h3 className="text-xl font-bold mb-4">Ficus and Flowers</h3>
               <p className="text-purple-100">
-                Bringing nature's beauty to your doorstep and events.
+                Bringing nature&apos;s beauty to your doorstep and events.
               </p>
             </motion.div>
             <motion.div

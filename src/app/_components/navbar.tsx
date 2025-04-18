@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ShoppingCart, User, Search } from "lucide-react";
+import { Menu, X, User, Search } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 

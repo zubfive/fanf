@@ -144,7 +144,7 @@ export default function Dashboard() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-800">What's on your mind?</h2>
+        <h2 className="text-2xl font-bold text-gray-800">What&apos;s on your mind?</h2>
         <div className="flex space-x-2">
           <button 
             onClick={handlePrev}

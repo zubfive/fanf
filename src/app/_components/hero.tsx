@@ -3,10 +3,11 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Flower, ArrowDown } from "lucide-react";
+import { FaPhone, FaWhatsapp } from "react-icons/fa";
 import { useRef, useEffect, useState } from "react";
 
 export default function HeroSection() {
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -19,11 +20,55 @@ export default function HeroSection() {
 
   useEffect(() => {
     // Only access window in client-side
-    setWindowSize({
-      width: window.innerWidth,
-      height: window.innerHeight
-    });
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+    
+    // Set initial size
+    handleResize();
+    
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+    
+    // Clean up
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Create an array of flower elements with proper typing
+  const renderFlowers = () => {
+    const flowers = [];
+    for (let i = 0; i < 20; i++) {
+      flowers.push(
+        <motion.div
+          key={i}
+          className="absolute"
+          initial={{
+            x: Math.random() * windowSize.width,
+            y: Math.random() * windowSize.height,
+            rotate: Math.random() * 360,
+            scale: 0.5 + Math.random() * 0.5
+          }}
+          animate={{
+            y: [0, -100, 0],
+            rotate: [0, 360],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{
+            duration: 5 + Math.random() * 5,
+            repeat: Infinity,
+            delay: Math.random() * 5,
+            ease: "easeInOut"
+          }}
+        >
+          <Flower className="w-8 h-8 text-white/20" />
+        </motion.div>
+      );
+    }
+    return flowers;
+  };
 
   return (
     <motion.section 
@@ -47,31 +92,7 @@ export default function HeroSection() {
         className="absolute inset-0 overflow-hidden"
         style={{ y, opacity }}
       >
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute"
-            initial={{
-              x: Math.random() * windowSize.width,
-              y: Math.random() * windowSize.height,
-              rotate: Math.random() * 360,
-              scale: 0.5 + Math.random() * 0.5
-            }}
-            animate={{
-              y: [0, -100, 0],
-              rotate: [0, 360],
-              scale: [1, 1.2, 1]
-            }}
-            transition={{
-              duration: 5 + Math.random() * 5,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-              ease: "easeInOut"
-            }}
-          >
-            <Flower className="w-8 h-8 text-white/20" />
-          </motion.div>
-        ))}
+        {renderFlowers()}
       </motion.div>
 
       <div className="relative z-10 max-w-5xl mx-auto">
@@ -81,14 +102,14 @@ export default function HeroSection() {
           transition={{ delay: 0.2 }}
           className="mb-4"
         >
-          {/* <motion.div
+          <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4 }}
             className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium"
           >
-            Discover Our Floral World
-          </motion.div> */}
+            Call or WhatsApp: +91 97040 69531
+          </motion.div>
         </motion.div>
 
         <motion.h1 
@@ -108,8 +129,10 @@ export default function HeroSection() {
         >
           Experience the elegance of nature with our tailor-made floral subscriptions and event management services.
         </motion.p>
+        
+        {/* Main Action Buttons */}
         <motion.div 
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
@@ -130,6 +153,36 @@ export default function HeroSection() {
               Book Events
             </Button>
           </motion.div>
+        </motion.div>
+        
+        {/* Contact Buttons */}
+        <motion.div
+          className="flex flex-wrap justify-center gap-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1 }}
+        >
+          <motion.a
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            href="tel:+919704069531"
+            className="flex items-center gap-2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white px-4 py-2 rounded-full transition-all duration-300"
+          >
+            <FaPhone className="text-white" />
+            <span>Call Now</span>
+          </motion.a>
+          
+          <motion.a
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            href="https://wa.me/+919704069531"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 bg-green-600/80 backdrop-blur-sm hover:bg-green-600/90 text-white px-4 py-2 rounded-full transition-all duration-300"
+          >
+            <FaWhatsapp className="text-white" />
+            <span>WhatsApp</span>
+          </motion.a>
         </motion.div>
       </div>
 

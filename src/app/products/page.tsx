@@ -1,11 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { ShoppingCart, Heart, Star, Filter, Search } from "lucide-react";
+import { ShoppingCart, Heart, Star, Search } from "lucide-react";
 import Link from "next/link";
 
 interface Product {

@@ -3,7 +3,8 @@
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { api } from "@/trpc/react";
-import { FaMapMarkerAlt, FaWhatsapp } from "react-icons/fa";
+import { FaMapMarkerAlt, FaWhatsapp, FaPhone } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 type Question = {
   id: string;
@@ -39,26 +40,45 @@ export default function ContactForm() {
         <h2 className="text-2xl font-bold mb-6 self-start">Contact Us</h2>
 
         {/* Centered Contact Details */}
-        <div className="flex flex-col items-start justify-center flex-grow space-y-4">
+        <div className="flex flex-col items-start justify-center flex-grow space-y-6">
           <p className="text-lg text-left">Have any questions? Feel free to reach out!</p>
 
-          {/* WhatsApp Contact */}
-          <div className="flex items-center space-x-2">
-            <FaWhatsapp className="text-2xl text-green-400" />
-            <a 
-              href="https://wa.me/+919704069531" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-lg font-semibold hover:underline"
-            >
-              +91 97040 69531
-            </a>
+          {/* Phone Number Highlight Section */}
+          <div className="w-full py-4 px-3 bg-purple-800 rounded-lg border border-purple-600">
+            <p className="text-purple-200 text-sm mb-2">Call or message us directly:</p>
+            <h3 className="text-2xl font-bold text-white mb-3">+91 97040 69531</h3>
+            
+            <div className="flex space-x-3 mt-2">
+              {/* Call Button */}
+              <motion.a 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="tel:+919704069531" 
+                className="flex-1 flex items-center justify-center gap-2 bg-purple-700 hover:bg-purple-600 text-white py-2 px-4 rounded-md transition-colors duration-300"
+              >
+                <FaPhone className="text-white" />
+                <span>Call Now</span>
+              </motion.a>
+              
+              {/* WhatsApp Button */}
+              <motion.a 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="https://wa.me/+919704069531" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 bg-green-600 hover:bg-green-500 text-white py-2 px-4 rounded-md transition-colors duration-300"
+              >
+                <FaWhatsapp className="text-white" />
+                <span>WhatsApp</span>
+              </motion.a>
+            </div>
           </div>
 
           {/* Address */}
           <div className="flex items-center space-x-2">
             <FaMapMarkerAlt className="text-2xl text-white" />
-            <p className="text-lg font-semibold">Aparna Serinity S-505, Kompally</p>
+            <p className="text-lg font-semibold">Aparna Serinity, Kompally</p>
           </div>
         </div>
       </div>

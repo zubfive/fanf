@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Calendar, Users, Flower, Sparkles, Clock, MapPin } from "lucide-react";
+import { Users, Flower, Sparkles } from "lucide-react";
 
 const eventServices = [
   {
