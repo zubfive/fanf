@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Menu, X, User, Search } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -15,7 +14,7 @@ export default function Navbar() {
     { name: "Home", href: "#" },
     { name: "Flowers", href: "#flowers" },
     { name: "Events", href: "#events" },
-
+    { name: "Testimonials", href: "#testimonials" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -79,15 +78,6 @@ export default function Navbar() {
                 </Link>
               </div>
             ))}
-            <div className="ml-2">
-              <Button 
-                className="bg-purple-600 text-white hover:bg-purple-700 transition-colors duration-200 flex items-center gap-1.5"
-                size="sm"
-              >
-                <User className="w-4 h-4" />
-                Sign In
-              </Button>
-            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -146,19 +136,10 @@ export default function Navbar() {
                   </Link>
                 </div>
               ))}
-              <div className="px-3 py-2">
-                <Button className="w-full bg-purple-600 text-white hover:bg-purple-700 flex items-center justify-center gap-1.5">
-                  <User className="w-4 h-4" />
-                  Sign In
-                </Button>
-              </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Floating Contact Button */}
-      {/* Removing the floating cart button from mobile view */}
     </header>
   );
 }

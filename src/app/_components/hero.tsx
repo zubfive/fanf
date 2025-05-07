@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Flower, ArrowDown } from "lucide-react";
+import { Flower } from "lucide-react";
 import { FaPhone, FaWhatsapp } from "react-icons/fa";
 import { useRef, useEffect, useState } from "react";
 
@@ -141,7 +141,10 @@ export default function HeroSection() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button className="bg-purple-600 text-white text-lg px-8 py-6 rounded-full hover:bg-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl">
+            <Button 
+              className="bg-purple-600 text-white text-lg px-8 py-6 rounded-full hover:bg-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+              onClick={() => document.getElementById('flowers')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               Explore Flowers
             </Button>
           </motion.div>
@@ -149,7 +152,10 @@ export default function HeroSection() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button className="bg-white text-purple-600 text-lg px-8 py-6 rounded-full hover:bg-purple-50 transition-all duration-300 shadow-lg hover:shadow-xl">
+            <Button 
+              className="bg-white text-purple-600 text-lg px-8 py-6 rounded-full hover:bg-purple-50 transition-all duration-300 shadow-lg hover:shadow-xl"
+              onClick={() => document.getElementById('events')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               Book Events
             </Button>
           </motion.div>
@@ -162,27 +168,25 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1 }}
         >
-          <motion.a
+          <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="tel:+919704069531"
-            className="flex items-center gap-2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white px-4 py-2 rounded-full transition-all duration-300"
+            className="flex items-center gap-2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white px-4 py-2 rounded-full transition-all duration-300 cursor-pointer"
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
             <FaPhone className="text-white" />
-            <span>Call Now</span>
-          </motion.a>
+            <span>Contact Us</span>
+          </motion.div>
           
-          <motion.a
+          <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="https://wa.me/+919704069531"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-green-600/80 backdrop-blur-sm hover:bg-green-600/90 text-white px-4 py-2 rounded-full transition-all duration-300"
+            className="flex items-center gap-2 bg-green-600/80 backdrop-blur-sm hover:bg-green-600/90 text-white px-4 py-2 rounded-full transition-all duration-300 cursor-pointer"
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
             <FaWhatsapp className="text-white" />
-            <span>WhatsApp</span>
-          </motion.a>
+            <span>Message Us</span>
+          </motion.div>
         </motion.div>
       </div>
 

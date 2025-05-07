@@ -60,10 +60,18 @@ export default function Home() {
             >
               <h4 className="text-lg font-semibold mb-4">Our Offerings</h4>
               <ul className="space-y-2 text-purple-100">
-                <li>Fresh Flower Arrangements</li>
-                <li>Event Decoration</li>
-                <li>Custom Bouquets</li>
-                <li>Corporate Events</li>
+                <li>
+                  <a href="#flowers" className="hover:text-white">Fresh Flower Arrangements</a>
+                </li>
+                <li>
+                  <a href="#events" className="hover:text-white">Event Decoration</a>
+                </li>
+                <li>
+                  <a href="#flowers" className="hover:text-white">Custom Bouquets</a>
+                </li>
+                <li>
+                  <a href="#events" className="hover:text-white">Corporate Events</a>
+                </li>
               </ul>
             </motion.div>
             <motion.div
@@ -74,30 +82,30 @@ export default function Home() {
             >
               <h4 className="text-lg font-semibold mb-4">Follow Us</h4>
               <div className="flex space-x-4">
-                <motion.a
+                <motion.div
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  href="#"
-                  className="text-purple-100 hover:text-white"
+                  className="text-purple-100 hover:text-white cursor-pointer"
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   Instagram
-                </motion.a>
-                <motion.a
+                </motion.div>
+                <motion.div
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  href="#"
-                  className="text-purple-100 hover:text-white"
+                  className="text-purple-100 hover:text-white cursor-pointer"
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   Facebook
-                </motion.a>
-                <motion.a
+                </motion.div>
+                <motion.div
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  href="#"
-                  className="text-purple-100 hover:text-white"
+                  className="text-purple-100 hover:text-white cursor-pointer"
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   Pinterest
-                </motion.a>
+                </motion.div>
               </div>
             </motion.div>
           </div>

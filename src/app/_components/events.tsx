@@ -26,6 +26,10 @@ const eventServices = [
 ];
 
 export default function EventsSection() {
+  const scrollToContact = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section className="py-24 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -90,11 +94,17 @@ export default function EventsSection() {
               Our team of experts is ready to help you create the perfect floral arrangements for your special occasion.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-white text-purple-900 hover:bg-purple-100">
-                Schedule Consultation
+              <Button 
+                className="bg-white text-purple-900 hover:bg-purple-100"
+                onClick={scrollToContact}
+              >
+                Contact Us
               </Button>
-              <Button className="bg-transparent border-2 border-white text-white hover:bg-white/10">
-                View Portfolio
+              <Button 
+                className="bg-transparent border-2 border-white text-white hover:bg-white/10"
+                onClick={scrollToContact}
+              >
+                Get a Quote
               </Button>
             </div>
           </div>
