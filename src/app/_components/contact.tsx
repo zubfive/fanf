@@ -1,10 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { api } from "@/trpc/react";
-import { FaMapMarkerAlt, FaWhatsapp, FaPhone } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { FaMapMarkerAlt, FaWhatsapp, FaPhone, FaCheckCircle } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
 
 type Question = {
   id: string;
@@ -19,10 +20,13 @@ type ContactFormData = Omit<Question, "id">;
 export default function ContactForm() {
   const { register, handleSubmit, formState: { errors }, reset } = useForm<ContactFormData>();
 
+  const [showSuccess, setShowSuccess] = useState(false);
+
   const createQuestion = api.contact.create.useMutation({
     onSuccess: async () => {
-      alert("Question sent successfully!");
+      setShowSuccess(true);
       reset();
+      setTimeout(() => setShowSuccess(false), 3000); // Hide after 3 seconds
     },
   });
 
@@ -32,7 +36,34 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="max-w-full mx-auto flex flex-col md:flex-row bg-white shadow-md overflow-hidden">
+    <div className="relative max-w-full mx-auto flex flex-col md:flex-row bg-white shadow-md overflow-hidden">
+      {/* Success Modal */}
+      <AnimatePresence>
+        {showSuccess && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="bg-white rounded-xl p-6 w-full max-w-md shadow-2xl"
+            >
+              <div className="text-center">
+                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-purple-100 mb-4">
+                  <FaCheckCircle className="h-8 w-8 text-purple-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Successfully Submitted</h3>
+                <p className="text-gray-600 mb-6">Your query has been received. We'll get back to you soon!</p>
+                <button
+                  onClick={() => setShowSuccess(false)}
+                  className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
       
       {/* Contact Details (Left Side) */}
       <div className="w-full md:w-1/3 bg-purple-900 text-white p-8 flex flex-col">
@@ -78,7 +109,7 @@ export default function ContactForm() {
           {/* Address */}
           <div className="flex items-center space-x-2">
             <FaMapMarkerAlt className="text-2xl text-white" />
-            <p className="text-lg font-semibold">Aparna Serinity, Kompally</p>
+            <p className="text-lg font-semibold">Aparna Serenity, Kompally</p>
           </div>
         </div>
       </div>
