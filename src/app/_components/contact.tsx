@@ -52,7 +52,7 @@ export default function ContactForm() {
                   <FaCheckCircle className="h-8 w-8 text-purple-600" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Successfully Submitted</h3>
-                <p className="text-gray-600 mb-6">Your query has been received. We'll get back to you soon!</p>
+                <p className="text-gray-600 mb-6">Your query has been received. We&apos;ll get back to you soon!</p>
                 <button
                   onClick={() => setShowSuccess(false)}
                   className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
