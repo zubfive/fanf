@@ -1,0 +1,94 @@
+/* Hero section specific styles */
+.heroContent {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 90vw;
+  margin: 2rem auto 0;
+  padding: 0 1rem;
+  transition: opacity 0.5s ease;
+}
+
+.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Responsive adjustments */
+@media (min-width: 640px) {
+  .heroContent {
+    margin-top: 3rem;
+    max-width: 85vw;
+  }
+}
+
+@media (min-width: 1024px) {
+  .heroContent {
+    margin-top: 4rem;
+    max-width: 80vw;
+  }
+}
+
+.heroSection {
+  /* This will be applied on mobile devices that support -webkit-fill-available */
+  min-height: 100vh; /* Fallback for browsers that don't support the custom property */
+  min-height: -webkit-fill-available;
+  width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  margin-top: 3rem;
+  position: relative;
+}
+
+/* Standard property that works in modern browsers */
+@supports (min-height: 100dvh) {
+  .heroSection {
+    min-height: 100dvh;
+  }
+}
+
+.heroImageContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+}
+
+.heroImage {
+  position: absolute;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 0.5rem;
+  height: 90%;
+  width: 95%;
+  max-width: 1400px;
+  margin: 2% auto 0;
+}
+
+/* Responsive adjustments */
+@media (min-width: 640px) {
+  .heroImage {
+    height: 85%;
+    width: 90%;
+    margin: 4% auto 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .heroImage {
+    height: 80%;
+    width: 85%;
+    margin: 6% auto 0;
+  }
+}

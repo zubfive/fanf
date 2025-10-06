@@ -5,6 +5,7 @@ import Testimonials from "./_components/testimonials";
 import HeroSection from "./_components/hero";
 import OurProducts from "./_components/products";
 import EventsSection from "./_components/events";
+import EventsGrid from "./_components/events-grid";
 import Navbar from "./_components/navbar";
 import { motion } from "framer-motion";
 
@@ -15,7 +16,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
-      <Navbar />
+      {/* <Navbar /> */}
       
       <HeroSection />
       
@@ -25,10 +26,11 @@ export default function Home() {
       
       
       <div id="events">
+        <EventsGrid />
         <EventsSection />
+    
       </div>
       
-
       
       <div id="testimonials">
         <Testimonials />
@@ -38,7 +40,7 @@ export default function Home() {
         <ContactForm />
       </div>
       
-      <footer className="bg-purple-900 text-white py-12">
+      <footer className="bg-purple-800 text-white py-12">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
             <motion.div

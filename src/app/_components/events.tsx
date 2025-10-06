@@ -2,26 +2,116 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Users, Flower, Sparkles } from "lucide-react";
+import { Users, Flower, Sparkles, Utensils, Music, Camera, Calendar, Gift, Wifi, Car, MapPin } from "lucide-react";
 
 const eventServices = [
   {
     title: "Weddings",
-    description: "Create unforgettable moments with our stunning wedding floral arrangements and decor.",
+    description: "Comprehensive wedding planning and decoration services to make your special day unforgettable.",
     icon: Flower,
-    features: ["Bridal Bouquets", "Ceremony Decor", "Reception Centerpieces"]
+    features: [
+      "Bridal & Bridesmaid Bouquet",
+      "Ceremony & Reception Decor",
+      "Mandap Decoration",
+      "Stage & Aisle Decor",
+      "Table Centerpieces"
+    ]
+  },
+  {
+    title: "Catering Services",
+    description: "Delicious and diverse catering options for all types of events and cuisines.",
+    icon: Utensils,
+    features: [
+      "Wedding & Reception Menus",
+      "Corporate Catering",
+      "Cocktail & Appetizers",
+      "Dessert Stations",
+      "Beverage Services"
+    ]
   },
   {
     title: "Corporate Events",
-    description: "Professional floral arrangements for conferences, meetings, and corporate celebrations.",
+    description: "Professional event solutions for business meetings, conferences, and corporate celebrations.",
     icon: Users,
-    features: ["Lobby Displays", "Conference Room Decor", "Branded Arrangements"]
+    features: [
+      "Conference Room Setups",
+      "Branded Decorations",
+      "Stage & Backdrop Design",
+      "Audio-Visual Support",
+      "Networking Areas"
+    ]
+  },
+  {
+    title: "Entertainment",
+    description: "Complete entertainment solutions to keep your guests engaged and entertained.",
+    icon: Music,
+    features: [
+      "Live Music & Bands",
+      "DJ Services",
+      "Dance Performances",
+      "MC & Anchoring",
+      "Photo Booth"
+    ]
+  },
+  {
+    title: "Photography & Videography",
+    description: "Professional documentation of your special moments with creative direction.",
+    icon: Camera,
+    features: [
+      "Pre-Wedding Shoots",
+      "Event Coverage",
+      "Drone Photography",
+      "Cinematic Videos",
+      "Photo Albums"
+    ]
   },
   {
     title: "Special Occasions",
-    description: "Custom floral designs for birthdays, anniversaries, and other special celebrations.",
+    description: "Custom solutions for birthdays, anniversaries, and milestone celebrations.",
     icon: Sparkles,
-    features: ["Custom Designs", "Seasonal Themes", "Personal Touches"]
+    features: [
+      "Theme Development",
+      "Venue Selection",
+      "Invitation Design",
+      "Event Coordination",
+      "Gift Registry"
+    ]
+  },
+  {
+    title: "Logistics & Transportation",
+    description: "Seamless event logistics and transportation solutions to ensure a smooth event experience.",
+    icon: Car,
+    features: [
+      "Event Transportation",
+      "Venue Selection",
+      "Accommodation Arrangements",
+      "Parking & Valet Services",
+      "Event Equipment Rentals"
+    ]
+  },
+  {
+    title: "Technology & Internet",
+    description: "Reliable event technology and internet solutions to keep your event connected.",
+    icon: Wifi,
+    features: [
+      "Event Wi-Fi Solutions",
+      "Audio-Visual Equipment Rentals",
+      "Live Streaming Services",
+      "Event App Development",
+      "Internet Connectivity"
+    ]
+  },
+  {
+    title: "Venue Selection & Management",
+    description: "Expert venue selection and management services to ensure a perfect event location.",
+    icon: MapPin,
+    features: [
+      "Venue Selection",
+      "Venue Management",
+      "Catering & Beverage Services",
+      "Accommodation Arrangements",
+      "Event Permits & Licenses"
+    ]
   }
 ];
 

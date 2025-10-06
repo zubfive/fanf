@@ -5,6 +5,7 @@ import { type Metadata } from "next";
 
 import { TRPCReactProvider } from "@/trpc/react";
 import Header from "./_components/navbar";
+import Navbar from "./_components/navbar";
 
 export const metadata: Metadata = {
   title: "Ficus and Flowers | Premium Floral Arrangements & Events",
@@ -32,10 +33,12 @@ export default function RootLayout({
       <head>
         <meta name="theme-color" content="#8a4baf" />
       </head>
-      <body>
+      <body className="min-h-screen flex flex-col">
         {/* To create proper favicon: Visit /favicon.html and take screenshot */}
-        <Header/>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+        <Navbar/>
+        <main className="flex-1">
+          <TRPCReactProvider>{children}</TRPCReactProvider>
+        </main>
       </body>
     </html>
   );

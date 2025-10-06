@@ -1,12 +1,21 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Flower } from "lucide-react";
+import { Flower, ChevronLeft, ChevronRight } from "lucide-react";
+import styles from "./hero.module.css";
 import { FaPhone, FaWhatsapp } from "react-icons/fa";
 import { useRef, useEffect, useState } from "react";
 
+const images = [
+  "/images/hero3.png",
+  "/images/hero/pushpa.png"
+  // Add more image paths here as you add them
+];
+
 export default function HeroSection() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -15,11 +24,32 @@ export default function HeroSection() {
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
   const [windowSize, setWindowSize] = useState({ width: 1200, height: 800 });
 
+  // Auto-advance carousel
   useEffect(() => {
-    // Only access window in client-side
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [currentIndex]);
+
+  const nextSlide = () => {
+    setDirection(1);
+    setCurrentIndex((prevIndex) => 
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setDirection(-1);
+    setCurrentIndex((prevIndex) => 
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  // Window resize handler
+  useEffect(() => {
     const handleResize = () => {
       setWindowSize({
         width: window.innerWidth,
@@ -73,21 +103,80 @@ export default function HeroSection() {
   return (
     <motion.section 
       ref={ref}
-      className="relative h-screen flex flex-col justify-center items-center text-center px-5 bg-green-100 bg-cover bg-center overflow-hidden"
-      style={{ backgroundImage: "url('/images/hero3.jpg')" }}
-      initial={{ opacity: 0, y: 50 }} 
+      className={`relative w-full flex flex-col justify-start items-center text-center px-6 sm:px-8 overflow-hidden bg-purple-50 ${styles.heroSection}`}
+      initial={{ opacity: 0, y: 30 }} 
       animate={{ opacity: 1, y: 0 }} 
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.5 }}
+      style={{
+        height: '100vh',
+        minHeight: '100vh',
+        maxWidth: '100vw',
+        overflowX: 'hidden',
+        marginTop: '3rem',
+        paddingTop: '3rem' // Height of the navbar
+      }}
     >
-      {/* Animated Background Overlay */}
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5 }}
-      />
+      {/* Carousel Container */}
+      <div className="absolute inset-0 w-full h-full px-4 sm:px-6 md:px-8">
+        <AnimatePresence initial={false} custom={direction}>
+          <motion.div
+            key={currentIndex}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${images[currentIndex]})`,
+              borderRadius: '1rem',
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+              height: 'calc(100% - 2rem)',
+              width: 'calc(100% - 2rem)',
+              margin: '1rem',
+              maxWidth: '100%'
+            }}
+            custom={direction}
+            initial={{ opacity: 0, x: direction > 0 ? '100%' : '-100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: direction > 0 ? '-100%' : '100%' }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
+          />
+        </AnimatePresence>
+      </div>
 
-      {/* Floating Flowers Animation */}
+      {/* Navigation Arrows - Hidden on mobile, visible on sm and up */}
+      <div className="hidden sm:flex absolute inset-0 items-center justify-between px-2 sm:px-4 z-20 pointer-events-none">
+        <button 
+          onClick={prevSlide}
+          className="p-1.5 sm:p-2 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors pointer-events-auto"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
+        </button>
+        <button 
+          onClick={nextSlide}
+          className="p-1.5 sm:p-2 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors pointer-events-auto"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
+        </button>
+      </div>
+      
+      {/* Mobile Navigation Dots */}
+      <div className="sm:hidden absolute bottom-4 left-0 right-0 z-20 flex justify-center gap-2">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => {
+              setDirection(index > currentIndex ? 1 : -1);
+              setCurrentIndex(index);
+            }}
+            className={`w-2.5 h-2.5 rounded-full transition-colors ${
+              index === currentIndex ? 'bg-white' : 'bg-white/50'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+
+
       <motion.div
         className="absolute inset-0 overflow-hidden"
         style={{ y, opacity }}
@@ -95,7 +184,12 @@ export default function HeroSection() {
         {renderFlowers()}
       </motion.div>
 
-      <div className="relative z-10 max-w-5xl mx-auto">
+      {/* Only show content over hero3.jpg */}
+      <div 
+        className={`${styles.heroContent} ${
+          images[currentIndex] === "/images/hero3.png" ? styles.visible : styles.hidden
+        }`}
+      >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -189,29 +283,6 @@ export default function HeroSection() {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Enhanced Scroll Indicator */}
-      {/* <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1 }}
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="flex flex-col items-center"
-        >
-          <span className="text-white text-sm mb-2">Scroll to explore</span>
-          <div className="w-6 h-10 border-2 border-white rounded-full p-2">
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1.5 h-1.5 bg-white rounded-full mx-auto"
-            />
-          </div>
-        </motion.div>
-      </motion.div> */}
     </motion.section>
   );
 }
