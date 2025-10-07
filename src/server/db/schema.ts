@@ -9,6 +9,7 @@ import {
   timestamp,
   uuid,
   varchar,
+  text,
 } from "drizzle-orm/pg-core";
 
 /**
@@ -18,7 +19,6 @@ import {
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
 export const createTable = pgTableCreator((name) => `fanf_${name}`);
-
 export const posts = createTable(
   "post",
   {
@@ -47,6 +47,26 @@ export const contact = createTable(
     email: varchar("email").notNull(),
     phoneNumber: varchar("phone_number", { length: 15 }),
     question: varchar("question").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .default(sql`CURRENT_TIMESTAMP`)
+      .notNull(),
+    
+  },
+)
+
+export const events = createTable(
+  "events",
+  {
+    id: uuid("id")
+    .primaryKey()
+    .default(sql`gen_random_uuid()`),
+    name: varchar("name"),
+    slug: varchar("slug").notNull(),
+    image: varchar("image").notNull(),
+    description: varchar("description").notNull(),
+    services: varchar("services").notNull(),
+    phone: varchar("phone").notNull(),
+    organizationOptions: text("organization_options").notNull(),
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),

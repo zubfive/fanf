@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
-import { contact } from "@/server/db/schema";
+import { contact, events } from "@/server/db/schema";
 
 
 export const contactRouter = createTRPCRouter({
@@ -56,6 +56,32 @@ export const contactRouter = createTRPCRouter({
     //   .mutation(async ({ input }) => {
     //     return db.delete(taskmanager).where(eq(taskmanager.id, input.id)); // Use eq() for filtering
     //   }),
+
+    createEvent: publicProcedure
+    .input(
+      z.object({
+        name: z.string().min(1),
+        slug: z.string().min(1),
+        image: z.string().min(1),
+        description: z.string().min(1),
+        services: z.string().min(1),
+        phone: z.string().min(1, 'Phone number is required'),
+        organizationOptions: z.string().min(1),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const newEvent = await ctx.db.insert(events).values({
+        name: input.name,
+        slug: input.slug,
+        image: input.image,
+        description: input.description,
+        services: input.services,
+        phone: input.phone,
+        organizationOptions: input.organizationOptions,
+      }).returning();
+
+      return newEvent;
+    }),
 
 
     });

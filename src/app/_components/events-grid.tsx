@@ -7,6 +7,14 @@ import { Cake, Heart, Sparkles, GraduationCap, Baby, Trophy, Flower2, Briefcase,
 
 const eventThemes = [
   {
+    id: 4,
+    name: 'Diwali',
+    image: '/images/events/diwali.png',
+    slug: 'diwali',
+    link: '/products?occasion=diwali',
+    description: 'Celebrate the festival of lights with our beautiful Diwali home decor and flower arrangements.'
+  },
+  {
     id: 1,
     name: 'Birthday',
     image: '/images/events/birthday.png',
@@ -29,14 +37,6 @@ const eventThemes = [
     slug: 'wedding',
     link: '/products?occasion=wedding',
     description: 'Make your special day perfect with our exquisite wedding flower arrangements and decorations.'
-  },
-  {
-    id: 4,
-    name: 'Diwali',
-    image: '/images/events/diwali.png',
-    slug: 'diwali',
-    link: '/products?occasion=diwali',
-    description: 'Celebrate the festival of lights with our beautiful Diwali home decor and flower arrangements.'
   },
   {
     id: 5,
