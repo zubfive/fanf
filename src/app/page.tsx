@@ -32,6 +32,23 @@ export default function Home() {
       </div>
       
       
+      {/* Full Width Image Section */}
+      <div className="w-full min-h-[50vh] relative overflow-hidden my-12">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
+          viewport={{ once: true, margin: '0px 0px -50% 0px' }}
+          className="w-full h-full"
+        >
+          <img
+            src="/images/hero/pushpa.png"
+            alt="Floral Arrangement"
+            className="w-full h-auto max-h-[80vh] object-contain mx-auto"
+          />
+        </motion.div>
+      </div>
+
       <div id="testimonials">
         <Testimonials />
       </div>
