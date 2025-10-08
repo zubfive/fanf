@@ -9,7 +9,7 @@ import { useRef, useEffect, useState } from "react";
 
 const images = [
   "/images/hero3.png",
-  "/images/hero/pushpa.png"
+
   // Add more image paths here as you add them
 ];
 
