@@ -142,7 +142,7 @@ export default function HeroSection() {
       </div>
 
       {/* Navigation Arrows - Hidden on mobile, visible on sm and up */}
-      <div className="hidden sm:flex absolute inset-0 items-center justify-between px-2 sm:px-4 z-20 pointer-events-none">
+      {/* <div className="hidden sm:flex absolute inset-0 items-center justify-between px-2 sm:px-4 z-20 pointer-events-none">
         <button 
           onClick={prevSlide}
           className="p-1.5 sm:p-2 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors pointer-events-auto"
@@ -158,7 +158,7 @@ export default function HeroSection() {
           <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
         </button>
       </div>
-      
+       */}
       {/* Mobile Navigation Dots */}
       <div className="sm:hidden absolute bottom-4 left-0 right-0 z-20 flex justify-center gap-2">
         {images.map((_, index) => (
