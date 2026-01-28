@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Users, Flower, Sparkles, Utensils, Music, Camera, Calendar, Gift, Wifi, Car, MapPin } from "lucide-react";
+import { Users, Flower, Sparkles, Utensils, Music, Camera, Wifi, Car, MapPin } from "lucide-react";
 
 const eventServices = [
   {
@@ -130,7 +130,7 @@ export default function EventsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-purple-900 mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-purple-900 mb-4">
             Event Management Services
           </h2>
           <p className="text-xl text-purple-700 max-w-2xl mx-auto">
@@ -138,26 +138,28 @@ export default function EventsSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mb-16">
           {eventServices.map((service, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-purple-50 rounded-2xl p-8 hover:bg-purple-100 transition-all duration-300"
+              className="bg-purple-50 rounded-xl md:rounded-2xl p-4 md:p-8 hover:bg-purple-100 transition-all duration-300"
             >
-              <div className="flex items-center justify-center w-16 h-16 bg-white rounded-full mb-6 mx-auto shadow-md">
-                <service.icon className="w-8 h-8 text-purple-600" />
+              <div className="flex items-center justify-center w-10 h-10 md:w-16 md:h-16 bg-white rounded-full mb-3 md:mb-6 mx-auto shadow-md">
+                <service.icon className="w-5 h-5 md:w-8 md:h-8 text-purple-600" />
               </div>
-              <h3 className="text-2xl font-bold text-purple-900 text-center mb-4">
+              <h3 className="text-base md:text-2xl font-bold text-purple-900 text-center mb-2 md:mb-4">
                 {service.title}
               </h3>
-              <p className="text-purple-700 text-center mb-6">
+              {/* Description - hidden on mobile, visible on tablet and up */}
+              <p className="hidden md:block text-purple-700 text-center mb-6">
                 {service.description}
               </p>
-              <ul className="space-y-3">
+              {/* Features list - hidden on mobile/tablet, visible on desktop only */}
+              <ul className="hidden lg:block space-y-3">
                 {service.features.map((feature, idx) => (
                   <li key={idx} className="flex items-center text-purple-600">
                     <span className="w-2 h-2 bg-purple-400 rounded-full mr-2"></span>

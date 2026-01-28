@@ -3,17 +3,10 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Cake, Heart, Sparkles, GraduationCap, Baby, Trophy, Flower2, Briefcase, CalendarCheck } from 'lucide-react';
+import { Cake, Heart, Sparkles } from 'lucide-react';
 
 const eventThemes = [
-  {
-    id: 4,
-    name: 'Diwali',
-    image: '/images/events/diwali.png',
-    slug: 'diwali',
-    link: '/products?occasion=diwali',
-    description: 'Celebrate the festival of lights with our beautiful Diwali home decor and flower arrangements.'
-  },
+
   {
     id: 1,
     name: 'Birthday',
@@ -67,7 +60,7 @@ export default function EventsGrid() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl font-bold text-purple-900 mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-purple-900 mb-4">
             Our Event Themes
           </h2>
           <p className="text-xl text-purple-700 max-w-2xl mx-auto">

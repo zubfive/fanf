@@ -33,12 +33,10 @@ export default function RootLayout({
       <head>
         <meta name="theme-color" content="#8a4baf" />
       </head>
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen">
         {/* To create proper favicon: Visit /favicon.html and take screenshot */}
         <Navbar/>
-        <main className="flex-1">
-          <TRPCReactProvider>{children}</TRPCReactProvider>
-        </main>
+        <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>
     </html>
   );

@@ -18,14 +18,14 @@ export default function Navbar() {
     { name: "Contact", href: "#contact" },
   ];
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Searching for:", searchQuery);
-    // Implement search functionality here
-  };
+  // const handleSearch = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   console.log("Searching for:", searchQuery);
+  //   // Implement search functionality here
+  // };
 
   return (
-    <header className="fixed top-0 p-1 left-0 right-0 z-50 w-full bg-purple-100 backdrop-blur-sm shadow-sm">
+    <header className="absolute top-0 p-1 left-0 right-0 z-50 w-full bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-12 gap-4">
           {/* Logo */}
@@ -44,7 +44,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Search Bar - Desktop (Center) */}
+          {/* Search Bar - Desktop (Center)
           <div className="hidden md:flex flex-1 max-w-md mx-auto">
             <form onSubmit={handleSearch} className="relative w-full">
               <div className="relative">
@@ -61,7 +61,7 @@ export default function Navbar() {
                 />
               </div>
             </form>
-          </div>
+          </div> */}
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6 shrink-0">
@@ -103,7 +103,7 @@ export default function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-white shadow-md border-t"
           >
-            {/* Search Bar - Mobile */}
+            {/* Search Bar - Mobile
             <div className="px-4 pt-4 pb-2">
               <form onSubmit={handleSearch} className="relative w-full">
                 <div className="relative">
@@ -120,7 +120,7 @@ export default function Navbar() {
                   />
                 </div>
               </form>
-            </div>
+            </div> */}
             
             <div className="px-4 pt-2 pb-3 space-y-1">
               {navItems.map((item) => (

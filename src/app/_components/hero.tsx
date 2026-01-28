@@ -1,6 +1,11 @@
 "use client";
 
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Flower, ChevronLeft, ChevronRight } from "lucide-react";
 import styles from "./hero.module.css";
@@ -36,15 +41,15 @@ export default function HeroSection() {
 
   const nextSlide = () => {
     setDirection(1);
-    setCurrentIndex((prevIndex) => 
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    setCurrentIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1,
     );
   };
 
   const prevSlide = () => {
     setDirection(-1);
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1,
     );
   };
 
@@ -53,18 +58,18 @@ export default function HeroSection() {
     const handleResize = () => {
       setWindowSize({
         width: window.innerWidth,
-        height: window.innerHeight
+        height: window.innerHeight,
       });
     };
-    
+
     // Set initial size
     handleResize();
-    
+
     // Add event listener
-    window.addEventListener('resize', handleResize);
-    
+    window.addEventListener("resize", handleResize);
+
     // Clean up
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // Create an array of flower elements with proper typing
@@ -79,64 +84,62 @@ export default function HeroSection() {
             x: Math.random() * windowSize.width,
             y: Math.random() * windowSize.height,
             rotate: Math.random() * 360,
-            scale: 0.5 + Math.random() * 0.5
+            scale: 0.5 + Math.random() * 0.5,
           }}
           animate={{
             y: [0, -100, 0],
             rotate: [0, 360],
-            scale: [1, 1.2, 1]
+            scale: [1, 1.2, 1],
           }}
           transition={{
             duration: 5 + Math.random() * 5,
             repeat: Infinity,
             delay: Math.random() * 5,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         >
-          <Flower className="w-8 h-8 text-white/20" />
-        </motion.div>
+          <Flower className="h-8 w-8 text-white/20" />
+        </motion.div>,
       );
     }
     return flowers;
   };
 
   return (
-    <motion.section 
+    <motion.section
       ref={ref}
-      className={`relative w-full flex flex-col justify-start items-center text-center px-6 sm:px-8 overflow-hidden bg-purple-50 ${styles.heroSection}`}
-      initial={{ opacity: 0, y: 30 }} 
-      animate={{ opacity: 1, y: 0 }} 
+      className={`relative flex w-full flex-col items-center justify-center overflow-hidden text-center ${styles.heroSection}`}
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       style={{
-        height: '100vh',
-        minHeight: '100vh',
-        maxWidth: '100vw',
-        overflowX: 'hidden',
-        marginTop: '3rem',
-        paddingTop: '3rem' // Height of the navbar
+        height: "100vh",
+        minHeight: "100vh",
+        width: "100vw",
+        maxWidth: "100vw",
+        overflowX: "hidden",
+        marginTop: 0,
+        paddingTop: 0,
       }}
     >
-      {/* Carousel Container */}
-      <div className="absolute inset-0 w-full h-full px-4 sm:px-6 md:px-8">
+      {/* Carousel Container - Full Screen */}
+      <div className="absolute inset-0 h-full w-full">
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             key={currentIndex}
             className="absolute inset-0 bg-cover bg-center"
             style={{
               backgroundImage: `url(${images[currentIndex]})`,
-              borderRadius: '1rem',
-              backgroundPosition: 'center',
-              backgroundSize: 'cover',
-              height: 'calc(100% - 2rem)',
-              width: 'calc(100% - 2rem)',
-              margin: '1rem',
-              maxWidth: '100%'
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              height: "100%",
+              width: "100%",
             }}
             custom={direction}
-            initial={{ opacity: 0, x: direction > 0 ? '100%' : '-100%' }}
+            initial={{ opacity: 0, x: direction > 0 ? "100%" : "-100%" }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: direction > 0 ? '-100%' : '100%' }}
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
+            exit={{ opacity: 0, x: direction > 0 ? "-100%" : "100%" }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
           />
         </AnimatePresence>
       </div>
@@ -160,7 +163,7 @@ export default function HeroSection() {
       </div>
        */}
       {/* Mobile Navigation Dots */}
-      <div className="sm:hidden absolute bottom-4 left-0 right-0 z-20 flex justify-center gap-2">
+      <div className="absolute bottom-4 left-0 right-0 z-20 flex justify-center gap-2 sm:hidden">
         {images.map((_, index) => (
           <button
             key={index}
@@ -168,14 +171,13 @@ export default function HeroSection() {
               setDirection(index > currentIndex ? 1 : -1);
               setCurrentIndex(index);
             }}
-            className={`w-2.5 h-2.5 rounded-full transition-colors ${
-              index === currentIndex ? 'bg-white' : 'bg-white/50'
+            className={`h-2.5 w-2.5 rounded-full transition-colors ${
+              index === currentIndex ? "bg-white" : "bg-white/50"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>
-
 
       <motion.div
         className="absolute inset-0 overflow-hidden"
@@ -185,29 +187,31 @@ export default function HeroSection() {
       </motion.div>
 
       {/* Only show content over hero3.jpg */}
-      <div 
+      <div
         className={`${styles.heroContent} ${
-          images[currentIndex] === "/images/hero3.png" ? styles.visible : styles.hidden
+          images[currentIndex] === "/images/hero3.png"
+            ? styles.visible
+            : styles.hidden
         }`}
       >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="mb-4"
+          className="mb-4 hidden lg:block"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4 }}
-            className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium"
+            className="inline-block rounded-full bg-white/20 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm"
           >
             Call or WhatsApp: +91 97040 69531
           </motion.div>
         </motion.div>
 
-        <motion.h1 
-          className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight"
+        <motion.h1
+          className="mb-6 text-5xl font-bold leading-tight text-white md:text-7xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
@@ -215,74 +219,118 @@ export default function HeroSection() {
           Fresh Flowers, Delivered to Your Door
         </motion.h1>
 
-        <motion.p 
-          className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8 leading-relaxed"
+        <motion.p
+          className="mx-auto mb-8 max-w-3xl text-lg leading-relaxed text-white/90 md:text-2xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
         >
-          Experience the elegance of nature with our tailor-made floral subscriptions and event management services.
+          Experience the elegance of nature with our tailor-made floral
+          subscriptions and event management services.
         </motion.p>
-        
-        {/* Main Action Buttons */}
-        <motion.div 
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
+
+        {/* Contact Card - Mobile Friendly */}
+        <motion.div
+          className="w-full max-w-sm mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
         >
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button 
-              className="bg-purple-600 text-white text-lg px-8 py-6 rounded-full hover:bg-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl"
-              onClick={() => document.getElementById('flowers')?.scrollIntoView({ behavior: 'smooth' })}
+          <div className="w-full py-4 px-3 bg-purple-800/90 backdrop-blur-sm rounded-lg border border-purple-600">
+            <p className="text-purple-200 text-sm mb-2">Call or message us directly:</p>
+            <h3 className="text-2xl font-bold text-white mb-3">+91 97040 69531</h3>
+            
+            <div className="flex space-x-3 mt-2">
+              {/* Call Button */}
+              <motion.a 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="tel:+919704069531" 
+                className="flex-1 flex items-center justify-center gap-2 bg-purple-700 hover:bg-purple-600 text-white py-2 px-4 rounded-md transition-colors duration-300"
+              >
+                <FaPhone className="text-white" />
+                <span>Call Now</span>
+              </motion.a>
+              
+              {/* WhatsApp Button */}
+              <motion.a 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="https://wa.me/+919704069531" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 bg-green-600 hover:bg-green-500 text-white py-2 px-4 rounded-md transition-colors duration-300"
+              >
+                <FaWhatsapp className="text-white" />
+                <span>WhatsApp</span>
+              </motion.a>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Main Action Buttons - Desktop: Centered inline, Mobile: Fixed bottom of hero section */}
+        {/* Desktop version - hidden on mobile/tablet */}
+        <motion.div
+          className="mt-4 hidden lg:flex flex-row justify-center gap-3"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1 }}
+        >
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button
+              className="rounded-full bg-purple-600 px-8 py-6 text-lg text-white shadow-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl"
+              onClick={() =>
+                document
+                  .getElementById("flowers")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             >
               Explore Flowers
             </Button>
           </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button 
-              className="bg-white text-purple-600 text-lg px-8 py-6 rounded-full hover:bg-purple-50 transition-all duration-300 shadow-lg hover:shadow-xl"
-              onClick={() => document.getElementById('events')?.scrollIntoView({ behavior: 'smooth' })}
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button
+              className="rounded-full bg-white px-8 py-6 text-lg text-purple-600 shadow-lg transition-all duration-300 hover:bg-purple-50 hover:shadow-xl"
+              onClick={() =>
+                document
+                  .getElementById("events")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             >
               Book Events
             </Button>
           </motion.div>
         </motion.div>
-        
-        {/* Contact Buttons */}
-        <motion.div
-          className="flex flex-wrap justify-center gap-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1 }}
-        >
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white px-4 py-2 rounded-full transition-all duration-300 cursor-pointer"
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            <FaPhone className="text-white" />
-            <span>Contact Us</span>
-          </motion.div>
-          
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 bg-green-600/80 backdrop-blur-sm hover:bg-green-600/90 text-white px-4 py-2 rounded-full transition-all duration-300 cursor-pointer"
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            <FaWhatsapp className="text-white" />
-            <span>Message Us</span>
-          </motion.div>
-        </motion.div>
       </div>
+
+      {/* Mobile/Tablet version - Bottom of hero section, full width */}
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 lg:hidden flex w-full z-30"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1 }}
+      >
+        <Button
+          className="flex-1 rounded-none bg-purple-600 py-5 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:bg-purple-700 active:bg-purple-800"
+          onClick={() =>
+            document
+              .getElementById("flowers")
+              ?.scrollIntoView({ behavior: "smooth" })
+          }
+        >
+          Explore Flowers
+        </Button>
+        <Button
+          className="flex-1 rounded-none bg-white py-5 text-base font-semibold text-purple-600 shadow-lg transition-all duration-300 hover:bg-purple-50 active:bg-purple-100 border-l border-purple-200"
+          onClick={() =>
+            document
+              .getElementById("events")
+              ?.scrollIntoView({ behavior: "smooth" })
+          }
+        >
+          Book Events
+        </Button>
+      </motion.div>
     </motion.section>
   );
 }
