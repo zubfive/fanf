@@ -29,7 +29,7 @@ const eventThemes: EventType[] = [
     id: 1,
     name: 'Birthday',
     slug: 'birthday',
-    image: '/images/events/birthday.png',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/birthday.png',
     description: 'Make their special day unforgettable with our stunning birthday flower arrangements. Perfect for any age and style.',
     services: [
       'Themed arrangements',
@@ -63,7 +63,7 @@ const eventThemes: EventType[] = [
     id: 2,
     name: 'Anniversary',
     slug: 'anniversary',
-    image: '/images/events/anniversary.jpg',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/anniversary.jpg',
     description: 'Celebrate love and togetherness with our romantic anniversary flower arrangements.',
     services: [
       'Romantic rose arrangements',
@@ -97,7 +97,7 @@ const eventThemes: EventType[] = [
     id: 3,
     name: 'Wedding',
     slug: 'wedding',
-    image: '/images/events/wedding.jpg',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/wedding.jpg',
     description: 'Make your special day perfect with our exquisite wedding flower arrangements and decorations.',
     services: [
       'Bridal bouquets',
@@ -134,7 +134,7 @@ const eventThemes: EventType[] = [
     id: 4,
     name: 'Diwali',
     slug: 'diwali',
-    image: '/images/events/diwali.png',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/diwali.png',
     description: 'Celebrate the festival of lights with our beautiful Diwali flower arrangements and decorations.',
     services: [
       'Diwali floral torans',
@@ -168,7 +168,7 @@ const eventThemes: EventType[] = [
     id: 5,
     name: 'Celebration',
     slug: 'celebration',
-    image: '/images/events/celebration.png',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/celebration.png',
     description: 'Perfect floral arrangements for any celebration or special occasion.',
     services: [
       'Custom bouquets',

@@ -1,59 +1,101 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { Quote } from "lucide-react";
+
+const testimonials = [
+  {
+    id: 1,
+    text: "Absolutely love the flowers! They brighten up my home every week. The quality and freshness are unmatched.",
+    name: "Priya Sharma",
+    role: "Loyal Customer",
+    image: "https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/clients/client1.jpeg",
+  },
+  {
+    id: 2,
+    text: "The best flower arrangements I have ever seen. Fresh, unique, and always delivered on time. Highly recommended!",
+    name: "Rajesh Kumar",
+    role: "Event Client",
+    image: "https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/clients/client2.jpeg",
+  },
+  {
+    id: 3,
+    text: "Ficus & Flowers transformed our wedding venue into a dreamscape. The attention to detail was extraordinary.",
+    name: "Ananya Reddy",
+    role: "Wedding Client",
+    image: "https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/clients/client3.jpeg",
+  },
+];
 
 export default function Testimonials() {
-  const testimonials = [
-    { id: 1, text: "Absolutely love the flowers! They brighten up my home every week.", name: "Happy Customer" },
-    { id: 2, text: "The best subscription ever! Fresh and unique floral arrangements.", name: "Floral Enthusiast" },
-    { id: 3, text: "Highly recommend! The quality and fragrance are amazing.", name: "Satisfied Client" },
-  ];
-
   return (
-    <section className="py-20 bg-purple-100 px-10 overflow-hidden">
-      <h2 className="text-4xl font-semibold text-center text-purple-800 mb-10">
-        What Our Clients Say
-      </h2>
-
-      <div className="relative w-full overflow-hidden">
+    <section className="py-20 md:py-32 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        {/* Section Header */}
         <motion.div
-          className="flex space-x-6 w-max"
-          initial={{ x: 0 }}
-          animate={{ x: "-50%" }} // Moves left by half of the content width
-          transition={{
-            repeat: Infinity,
-            ease: "linear",
-            duration: 40, // Slow smooth scrolling
-          }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16 md:mb-20"
         >
-          {[...testimonials, ...testimonials].map((item, index) => (
-            <Card
-              key={index}
-              className="p-6 w-80 bg-purple-200 rounded-3xl shadow-lg shadow-purple-300 border border-purple-300 flex-shrink-0"
+          <span className="text-gold text-xs font-medium tracking-[0.3em] uppercase">
+            Testimonials
+          </span>
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-forest mt-4 mb-6">
+            What Our Clients Say
+          </h2>
+          <div className="flex items-center justify-center gap-4">
+            <div className="h-px w-16 bg-gold/40" />
+            <div className="w-2 h-2 rounded-full bg-gold/60" />
+            <div className="h-px w-16 bg-gold/40" />
+          </div>
+        </motion.div>
+
+        {/* Testimonials Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {testimonials.map((item, index) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              viewport={{ once: true }}
+              className="relative bg-ivory p-8 md:p-10 rounded-sm group hover:shadow-lg transition-all duration-500 border border-transparent hover:border-gold/10"
             >
-              {/* Image Placeholder */}
-              <div className="w-full h-40 bg-purple-300 rounded-xl flex items-center justify-center">
-                <Image
-                  src={`/images/client${(index % 3) + 1}.jpeg`}
-                  alt="Client"
-                  width={80}
-                  height={80}
-                  className="w-20 h-20 rounded-full shadow-md border-4 border-purple-400"
-                />
+              {/* Quote icon */}
+              <Quote className="w-8 h-8 text-gold/30 mb-6" />
+
+              {/* Quote text */}
+              <p className="text-forest/80 text-base md:text-lg leading-relaxed mb-8 font-light italic">
+                &ldquo;{item.text}&rdquo;
+              </p>
+
+              {/* Author */}
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gold/20">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    width={48}
+                    height={48}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <h4 className="font-serif text-sm font-semibold text-forest">
+                    {item.name}
+                  </h4>
+                  <p className="text-xs text-sage">{item.role}</p>
+                </div>
               </div>
 
-              {/* Text Content */}
-              <CardContent className="mt-5 text-center">
-                <p className="text-purple-900 italic">
-                  &ldquo;{item.text}&rdquo;
-                </p>
-                <h4 className="text-purple-700 font-bold mt-3">- {item.name}</h4>
-              </CardContent>
-            </Card>
+              {/* Decorative corner */}
+              <div className="absolute top-0 right-0 w-16 h-16 border-t border-r border-gold/10 m-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

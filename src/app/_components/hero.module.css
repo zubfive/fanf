@@ -1,102 +1,18 @@
-/* Hero section specific styles */
-.heroContent {
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  max-width: 90vw;
-  margin: 0 auto;
-  padding: 0 1rem;
-  padding-bottom: 70px; /* Account for bottom button bar on mobile */
-  transition: opacity 0.5s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end; /* Push content toward bottom on mobile */
-}
-
-.visible {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Responsive adjustments */
-@media (min-width: 640px) {
-  .heroContent {
-    max-width: 85vw;
-  }
-}
-
-@media (min-width: 1024px) {
-  .heroContent {
-    max-width: 80vw;
-    justify-content: center; /* Centered on desktop */
-    padding-bottom: 0; /* No extra padding on desktop */
-  }
-}
-
+/* Hero section - minimal CSS, mostly handled by Tailwind now */
 .heroSection {
-  /* Full screen hero section */
   min-height: 100vh;
   min-height: -webkit-fill-available;
   height: 100vh;
   width: 100vw;
   max-width: 100vw;
   padding: 0;
-  box-sizing: border-box;
   margin: 0;
   position: relative;
   overflow: hidden;
 }
 
-/* Standard property that works in modern browsers */
 @supports (min-height: 100dvh) {
   .heroSection {
     min-height: 100dvh;
-  }
-}
-
-.heroImageContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  padding: 0 0.5rem;
-  box-sizing: border-box;
-}
-
-.heroImage {
-  position: absolute;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 0.5rem;
-  height: 90%;
-  width: 95%;
-  max-width: 1400px;
-  margin: 2% auto 0;
-}
-
-/* Responsive adjustments */
-@media (min-width: 640px) {
-  .heroImage {
-    height: 85%;
-    width: 90%;
-    margin: 4% auto 0;
-  }
-}
-
-@media (min-width: 1024px) {
-  .heroImage {
-    height: 80%;
-    width: 85%;
-    margin: 6% auto 0;
   }
 }

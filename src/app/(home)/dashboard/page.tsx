@@ -10,49 +10,49 @@ const occasionCategories = [
   {
     id: 1,
     name: 'Birthday',
-    image: '/images/flowers/birthday.jpg',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/birthday.jpg',
     link: '/products?occasion=birthday'
   },
   {
     id: 2,
     name: 'Anniversary',
-    image: '/images/flowers/anniversary.jpg',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/anniversary.jpg',
     link: '/products?occasion=anniversary'
   },
   {
     id: 3,
     name: 'Wedding',
-    image: '/images/flowers/wedding.jpg',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/wedding.jpg',
     link: '/products?occasion=wedding'
   },
   {
     id: 4,
     name: 'Sympathy',
-    image: '/images/flowers/sympathy.jpg',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/sympathy.jpg',
     link: '/products?occasion=sympathy'
   },
   {
     id: 5,
     name: 'Romance',
-    image: '/images/flowers/romance.jpg',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/romance.jpg',
     link: '/products?occasion=romance'
   },
   {
     id: 6,
     name: 'Celebration',
-    image: '/images/flowers/celebration.jpg',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/celebration.jpg',
     link: '/products?occasion=celebration'
   },
   {
     id: 7,
     name: 'Thank You',
-    image: '/images/flowers/thankyou.jpg',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/thankyou.jpg',
     link: '/products?occasion=thankyou'
   },
   {
     id: 8,
     name: 'Housewarming',
-    image: '/images/flowers/housewarming.jpg',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/housewarming.jpg',
     link: '/products?occasion=housewarming'
   }
 ];
@@ -61,7 +61,7 @@ const trendingFlowers = [
   {
     id: 1,
     name: 'Premium Rose Bouquet',
-    image: '/images/flowers/premium-roses.jpg',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/premium-roses.jpg',
     rating: 4.3,
     deliveryTime: '35-40',
     categories: ['Roses', 'Premium', 'Bouquet'],
@@ -72,7 +72,7 @@ const trendingFlowers = [
   {
     id: 2,
     name: 'Mixed Seasonal Arrangement',
-    image: '/images/flowers/mixed-seasonal.jpg',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/mixed-seasonal.jpg',
     rating: 4.3,
     deliveryTime: '35-40',
     categories: ['Mixed', 'Seasonal', 'Arrangement'],
@@ -83,7 +83,7 @@ const trendingFlowers = [
   {
     id: 3,
     name: 'Exotic Orchid Collection',
-    image: '/images/flowers/exotic-orchids.jpg',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/exotic-orchids.jpg',
     rating: 4.2,
     deliveryTime: '45-50',
     categories: ['Orchids', 'Exotic', 'Premium'],
@@ -94,7 +94,7 @@ const trendingFlowers = [
   {
     id: 4,
     name: 'Celebration Basket',
-    image: '/images/flowers/celebration-basket.jpg',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/celebration-basket.jpg',
     rating: 4.1,
     deliveryTime: '45-50',
     categories: ['Mixed', 'Basket', 'Celebration'],
@@ -105,7 +105,7 @@ const trendingFlowers = [
   {
     id: 5,
     name: 'Luxury Lily Bouquet',
-    image: '/images/flowers/luxury-lily.jpg',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/luxury-lily.jpg',
     rating: 4.5,
     deliveryTime: '35-40',
     categories: ['Lily', 'Luxury', 'Bouquet'],
@@ -180,7 +180,7 @@ export default function Dashboard() {
                 <div className="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden mb-2 border-2 border-transparent group-hover:border-purple-500 transition-all duration-300">
                   <div className="relative w-full h-full">
                     <Image
-                      src={category.image || '/images/placeholder.jpg'}
+                      src={category.image || 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/misc/placeholder.jpg'}
                       alt={category.name || 'Flower category'}
                       fill
                       sizes="(max-width: 768px) 96px, 112px"
@@ -208,7 +208,7 @@ export default function Dashboard() {
               <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
                 <div className="relative h-48 w-full">
                   <Image
-                    src={flower.image || '/images/placeholder.jpg'}
+                    src={flower.image || 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/misc/placeholder.jpg'}
                     alt={flower.name}
                     fill
                     className="object-cover"

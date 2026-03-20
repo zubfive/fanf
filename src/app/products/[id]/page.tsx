@@ -33,7 +33,7 @@ const products: Product[] = [
     id: 1,
     name: "Rose Bouquet",
     description: "A fresh collection of premium red roses.",
-    image: "/images/products/rose-boquet.jpeg",
+    image: "https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/products/rose-boquet.jpeg",
     price: 49.99,
     rating: 4.8,
     reviews: 128,

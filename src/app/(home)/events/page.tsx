@@ -10,7 +10,7 @@ const eventThemes = [
   {
     id: 1,
     name: 'Birthday',
-    image: '/images/events/birthday.png',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/birthday.png',
     slug: 'birthday',
     link: '/products?occasion=birthday',
     description: 'Make their special day unforgettable with our stunning birthday flower arrangements. Perfect for any age and style.'
@@ -18,7 +18,7 @@ const eventThemes = [
   {
     id: 2,
     name: 'Anniversary',
-    image: '/images/events/anniversary.jpg',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/anniversary.jpg',
     slug: 'anniversary',
     link: '/products?occasion=anniversary',
     description: 'Celebrate love and togetherness with our romantic anniversary flower arrangements.'
@@ -26,7 +26,7 @@ const eventThemes = [
   {
     id: 3,
     name: 'Wedding',
-    image: '/images/events/wedding.jpg',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/wedding.jpg',
     slug: 'wedding',
     link: '/products?occasion=wedding',
     description: 'Make your special day perfect with our exquisite wedding flower arrangements and decorations.'
@@ -34,7 +34,7 @@ const eventThemes = [
   {
     id: 4,
     name: 'Diwali',
-    image: '/images/events/diwali.png',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/diwali.png',
     slug: 'diwali',
     link: '/products?occasion=diwali',
     description: 'Celebrate the festival of lights with our beautiful Diwali home decor and flower arrangements. We provide everything you need for a perfect Diwali celebration.'
@@ -42,7 +42,7 @@ const eventThemes = [
   {
     id: 5,
     name: 'Romance',
-    image: '/images/events/romance.jpg',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/romance.jpg',
     slug: 'romance',
     link: '/products?occasion=romance',
     description: 'Express your love with our romantic flower arrangements and surprise your special someone.'
@@ -50,7 +50,7 @@ const eventThemes = [
   {
     id: 6,
     name: 'Celebration',
-    image: '/images/events/celebration.png',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/celebration.png',
     slug: 'celebration',
     link: '/products?occasion=celebration',
     description: 'Make any celebration special with our vibrant and cheerful flower arrangements.'
@@ -58,7 +58,7 @@ const eventThemes = [
   {
     id: 7,
     name: 'Thank You',
-    image: '/images/events/thankyou.jpg',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/thankyou.jpg',
     slug: 'thank-you',
     link: '/products?occasion=thankyou',
     description: 'Show your appreciation with our beautiful thank you flower arrangements.'
@@ -66,7 +66,7 @@ const eventThemes = [
   {
     id: 8,
     name: 'Housewarming',
-    image: '/images/events/housewarming.jpg',
+    image: 'https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/housewarming.jpg',
     link: '/products?occasion=housewarming',
     description: 'Welcome someone to their new home with our beautiful housewarming flower arrangements.'
   }

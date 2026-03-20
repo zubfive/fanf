@@ -1,80 +1,89 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Cake, Heart, Sparkles } from 'lucide-react';
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 
 const eventThemes = [
-
   {
     id: 1,
-    name: 'Birthday',
-    image: '/images/events/birthday.png',
-    slug: 'birthday',
-    link: '/products?occasion=birthday',
-    description: 'Make their special day unforgettable with our stunning birthday flower arrangements. Perfect for any age and style.'
+    name: "Birthday",
+    image: "https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/birthday_new.jpg",
+    slug: "birthday",
+    subtitle: "Unforgettable Celebrations",
   },
   {
     id: 2,
-    name: 'Anniversary',
-    image: '/images/events/anniversary.jpg',
-    slug: 'anniversary',
-    link: '/products?occasion=anniversary',
-    description: 'Celebrate love and togetherness with our romantic anniversary flower arrangements.'
+    name: "Anniversary",
+    image: "https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/anniversary_new.jpg",
+    slug: "anniversary",
+    subtitle: "Timeless Elegance",
   },
   {
     id: 3,
-    name: 'Wedding',
-    image: '/images/events/wedding.jpg',
-    slug: 'wedding',
-    link: '/products?occasion=wedding',
-    description: 'Make your special day perfect with our exquisite wedding flower arrangements and decorations.'
+    name: "Wedding",
+    image: "https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/wedding_new.jpg",
+    slug: "wedding",
+    subtitle: "Your Perfect Day",
   },
   {
     id: 5,
-    name: 'Romance',
-    image: '/images/events/romance.png',
-    slug: 'romance',
-    link: '/products?occasion=romance',
-    description: 'Express your love with our romantic flower arrangements and surprise your special someone.'
+    name: "Romance",
+    image: "https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/romance_new.jpg",
+    slug: "romance",
+    subtitle: "Expressions of Love",
   },
   {
     id: 6,
-    name: 'Celebration',
-    image: '/images/events/celebration.png',
-    slug: 'celebration',
-    link: '/products?occasion=celebration',
-    description: 'Make any celebration special with our vibrant and cheerful flower arrangements.'
-  }
+    name: "Celebration",
+    image: "https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/events/celebration_new.jpg",
+    slug: "celebration",
+    subtitle: "Every Moment Matters",
+  },
 ];
 
 export default function EventsGrid() {
   return (
-    <section className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 md:py-32 bg-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16 md:mb-20"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-purple-900 mb-4">
-            Our Event Themes
+          <span className="text-gold text-xs font-medium tracking-[0.3em] uppercase">
+            Occasions
+          </span>
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-forest mt-4 mb-6">
+            Flowers for Every Moment
           </h2>
-          <p className="text-xl text-purple-700 max-w-2xl mx-auto">
-            Discover beautiful floral arrangements for every occasion
+          <div className="flex items-center justify-center gap-4">
+            <div className="h-px w-16 bg-gold/40" />
+            <div className="w-2 h-2 rounded-full bg-gold/60" />
+            <div className="h-px w-16 bg-gold/40" />
+          </div>
+          <p className="text-sage mt-6 max-w-xl mx-auto text-base md:text-lg font-light">
+            Discover beautiful floral arrangements crafted for life&apos;s most precious occasions
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {eventThemes.map((theme) => (
+        {/* Bento-style Grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {eventThemes.map((theme, index) => (
             <motion.div
               key={theme.id}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 h-64 relative"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className={`group relative overflow-hidden rounded-sm ${
+                index === 0 || index === 3
+                  ? "lg:row-span-2 aspect-[3/4] lg:aspect-auto"
+                  : "aspect-[4/3]"
+              }`}
             >
               <Link href={`/events/${theme.slug}`} className="block h-full w-full">
                 <div className="relative h-full w-full">
@@ -82,18 +91,23 @@ export default function EventsGrid() {
                     src={theme.image}
                     alt={theme.name}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    priority={theme.id <= 3}
+                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    priority={index <= 2}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10 flex items-end p-4">
-                    <div className="flex items-center gap-2 text-white">
-                      {theme.slug === 'birthday' && <Cake className="w-6 h-6 text-pink-400" />}
-                      {theme.slug === 'anniversary' && <Heart className="w-6 h-6 text-red-400" />}
-                      {theme.slug === 'wedding' && <Sparkles className="w-6 h-6 text-yellow-300" />}
-                      {theme.slug === 'diwali' && <Sparkles className="w-6 h-6 text-yellow-400" />}
-                      {theme.slug === 'romance' && <Heart className="w-6 h-6 text-red-500" />}
-                      <h3 className="text-xl font-bold drop-shadow-md">{theme.name}</h3>
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest/70 via-forest/10 to-transparent transition-all duration-500 group-hover:from-forest/80" />
+
+                  {/* Content */}
+                  <div className="absolute bottom-0 left-0 right-0 p-5 md:p-8 z-10">
+                    <div className="transform transition-transform duration-500 group-hover:translate-y-[-4px]">
+                      <span className="text-gold text-[10px] md:text-xs font-medium tracking-[0.2em] uppercase">
+                        {theme.subtitle}
+                      </span>
+                      <h3 className="font-serif text-xl md:text-2xl lg:text-3xl font-medium text-white mt-1">
+                        {theme.name}
+                      </h3>
+                      <div className="h-px w-8 bg-gold/60 mt-3 transition-all duration-500 group-hover:w-16" />
                     </div>
                   </div>
                 </div>

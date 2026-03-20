@@ -1,14 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Search } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = [
     { name: "Home", href: "#" },
@@ -18,125 +26,96 @@ export default function Navbar() {
     { name: "Contact", href: "#contact" },
   ];
 
-  // const handleSearch = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   console.log("Searching for:", searchQuery);
-  //   // Implement search functionality here
-  // };
-
   return (
-    <header className="absolute top-0 p-1 left-0 right-0 z-50 w-full bg-transparent">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-12 gap-4">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled
+          ? "bg-ivory/95 backdrop-blur-md shadow-sm border-b border-gold/10"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
-          <div className="flex items-center shrink-0">
-            <Link href="/" className="flex items-center">
-              <Image 
-                src="/images/logo/logo.png" 
-                alt="Ficus & Flowers Logo" 
-                width={50} 
-                height={50} 
-                className="h-10 w-auto"
-              />
-              <span className="text-xl font-bold text-purple-800 ml-1">
-                Ficus & Flowers
-              </span>
-            </Link>
-          </div>
-
-          {/* Search Bar - Desktop (Center)
-          <div className="hidden md:flex flex-1 max-w-md mx-auto">
-            <form onSubmit={handleSearch} className="relative w-full">
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <Search className="w-4 h-4 text-purple-400" />
-                </div>
-                <input
-                  type="search"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full py-2 pl-10 pr-4 text-sm text-purple-700 bg-gray-100 rounded-lg focus:outline-none focus:ring-1 focus:ring-purple-600 focus:bg-white"
-                  placeholder="Search flowers..."
-                  aria-label="Search flowers"
-                />
-              </div>
-            </form>
-          </div> */}
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="https://lsilheqheeohjnqwspgn.supabase.co/storage/v1/object/public/logo/f&f.png"
+              alt="Ficus & Flowers"
+              width={48}
+              height={48}
+              className={`h-10 w-auto lg:h-12 transition-all duration-500 ${
+                isScrolled ? "" : "brightness-0 invert"
+              }`}
+            />
+            <span
+              className={`font-serif text-xl lg:text-2xl font-semibold tracking-tight transition-colors duration-500 ${
+                isScrolled ? "text-forest" : "text-white"
+              }`}
+            >
+              Ficus & Flowers
+            </span>
+          </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6 shrink-0">
+          <nav className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
-              <div
+              <Link
                 key={item.name}
-                className="relative"
+                href={item.href}
+                className={`relative text-sm font-medium tracking-wide uppercase transition-colors duration-300 after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:transition-all after:duration-300 hover:after:w-full ${
+                  isScrolled
+                    ? "text-forest/70 hover:text-forest after:bg-gold"
+                    : "text-white/80 hover:text-white after:bg-gold"
+                }`}
               >
-                <Link
-                  href={item.href}
-                  className="text-base font-medium text-purple-700 hover:text-black transition-colors duration-200"
-                >
-                  {item.name}
-                </Link>
-              </div>
+                {item.name}
+              </Link>
             ))}
-          </div>
+          </nav>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-md"
+            className="md:hidden p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
-              <X className="w-6 h-6 text-purple-700" />
+              <X className={`w-6 h-6 ${isScrolled ? "text-forest" : "text-white"}`} />
             ) : (
-              <Menu className="w-6 h-6 text-purple-700" />
+              <Menu className={`w-6 h-6 ${isScrolled ? "text-forest" : "text-white"}`} />
             )}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Luxury Slide-out */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white shadow-md border-t"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="md:hidden bg-ivory/98 backdrop-blur-xl border-t border-gold/10"
           >
-            {/* Search Bar - Mobile
-            <div className="px-4 pt-4 pb-2">
-              <form onSubmit={handleSearch} className="relative w-full">
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <Search className="w-4 h-4 text-purple-400" />
-                  </div>
-                  <input
-                    type="search"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full py-2 pl-10 pr-4 text-sm text-purple-700 bg-gray-100 rounded-lg focus:outline-none focus:ring-1 focus:ring-purple-600 focus:bg-white"
-                    placeholder="Search flowers..."
-                    aria-label="Search flowers"
-                  />
-                </div>
-              </form>
-            </div> */}
-            
-            <div className="px-4 pt-2 pb-3 space-y-1">
-              {navItems.map((item) => (
-                <div
+            <nav className="px-6 py-6 space-y-1">
+              {navItems.map((item, index) => (
+                <motion.div
                   key={item.name}
-                  className="py-1"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.05 }}
                 >
-                  <Link 
+                  <Link
                     href={item.href}
-                    className="block px-3 py-2 text-base font-medium text-purple-700 hover:text-black hover:bg-purple-50 rounded-md transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block py-3 text-base font-medium text-forest/80 hover:text-forest tracking-wide uppercase border-b border-gold/10 last:border-0 transition-colors"
                   >
                     {item.name}
                   </Link>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>

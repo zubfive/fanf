@@ -7,10 +7,8 @@ export default {
   theme: {
   	extend: {
   		fontFamily: {
-  			sans: [
-  				'var(--font-geist-sans)',
-                    ...fontFamily.sans
-                ]
+  			sans: ['var(--font-dm-sans)', ...fontFamily.sans],
+  			serif: ['var(--font-playfair)', ...fontFamily.serif],
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
@@ -57,8 +55,47 @@ export default {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
-  		}
+  			},
+  			// Botanical Luxury custom colors
+  			forest: {
+  				DEFAULT: '#1B3A2D',
+  				light: '#2D5A45',
+  				dark: '#0F2419',
+  			},
+  			sage: {
+  				DEFAULT: '#6B8F71',
+  				light: '#8BAF8F',
+  				dark: '#4A6F4E',
+  			},
+  			blush: {
+  				DEFAULT: '#D4A59A',
+  				light: '#EDD5CE',
+  				dark: '#B8857A',
+  			},
+  			ivory: {
+  				DEFAULT: '#FAF7F2',
+  				dark: '#EDE8E0',
+  			},
+  			gold: {
+  				DEFAULT: '#C9A96E',
+  				light: '#DCC49A',
+  				dark: '#A8884D',
+  			},
+  		},
+  		keyframes: {
+  			'fade-in-up': {
+  				'0%': { opacity: '0', transform: 'translateY(30px)' },
+  				'100%': { opacity: '1', transform: 'translateY(0)' },
+  			},
+  			'fade-in': {
+  				'0%': { opacity: '0' },
+  				'100%': { opacity: '1' },
+  			},
+  		},
+  		animation: {
+  			'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
+  			'fade-in': 'fade-in 0.6s ease-out forwards',
+  		},
   	}
   },
   plugins: [require("tailwindcss-animate")],
