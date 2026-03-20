@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Users, Flower, Sparkles, Utensils, Music, Camera, Wifi, Car, MapPin } from "lucide-react";
 
@@ -65,6 +66,14 @@ export default function EventsSection() {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  useEffect(() => {
+    if (document.querySelector('script[src="//www.instagram.com/embed.js"]')) return;
+    const script = document.createElement("script");
+    script.src = "//www.instagram.com/embed.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
   return (
     <section className="py-20 md:py-32 bg-ivory">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -123,6 +132,38 @@ export default function EventsSection() {
             </motion.div>
           ))}
         </div>
+
+        {/* Instagram Post */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mb-16 md:mb-20"
+        >
+          <div className="text-center mb-10">
+            <span className="text-gold text-xs font-medium tracking-[0.3em] uppercase">
+              Follow Us
+            </span>
+            <h3 className="font-serif text-2xl md:text-3xl font-medium text-forest mt-4 mb-4">
+              From Our Instagram
+            </h3>
+            <div className="flex items-center justify-center gap-4">
+              <div className="h-px w-16 bg-gold/40" />
+              <div className="w-2 h-2 rounded-full bg-gold/60" />
+              <div className="h-px w-16 bg-gold/40" />
+            </div>
+          </div>
+          <div className="flex justify-center">
+            <blockquote
+              className="instagram-media"
+              data-instgrm-captioned
+              data-instgrm-permalink="https://www.instagram.com/p/DV-wLJtD4Fu/?igsh=dmxlaGdzbmp0czFh"
+              data-instgrm-version="14"
+              style={{ maxWidth: "540px", width: "100%" }}
+            />
+          </div>
+        </motion.div>
 
         {/* CTA Banner */}
         <motion.div

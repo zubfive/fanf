@@ -154,22 +154,35 @@ export default function Home() {
               </h4>
               <div className="flex gap-3">
                 {[
-                  { icon: FaInstagram, label: "Instagram" },
-                  { icon: FaFacebookF, label: "Facebook" },
-                  { icon: FaPinterestP, label: "Pinterest" },
-                ].map(({ icon: Icon, label }) => (
-                  <button
-                    key={label}
-                    onClick={() =>
-                      document
-                        .getElementById("contact")
-                        ?.scrollIntoView({ behavior: "smooth" })
-                    }
-                    className="w-10 h-10 flex items-center justify-center border border-white/10 text-white/50 hover:text-gold hover:border-gold/30 transition-all duration-300"
-                    aria-label={label}
-                  >
-                    <Icon className="w-4 h-4" />
-                  </button>
+                  { icon: FaInstagram, label: "Instagram", href: "https://www.instagram.com/ficusanflowers" },
+                  { icon: FaFacebookF, label: "Facebook", href: undefined },
+                  { icon: FaPinterestP, label: "Pinterest", href: undefined },
+                ].map(({ icon: Icon, label, href }) => (
+                  href ? (
+                    <a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 flex items-center justify-center border border-white/10 text-white/50 hover:text-gold hover:border-gold/30 transition-all duration-300"
+                      aria-label={label}
+                    >
+                      <Icon className="w-4 h-4" />
+                    </a>
+                  ) : (
+                    <button
+                      key={label}
+                      onClick={() =>
+                        document
+                          .getElementById("contact")
+                          ?.scrollIntoView({ behavior: "smooth" })
+                      }
+                      className="w-10 h-10 flex items-center justify-center border border-white/10 text-white/50 hover:text-gold hover:border-gold/30 transition-all duration-300"
+                      aria-label={label}
+                    >
+                      <Icon className="w-4 h-4" />
+                    </button>
+                  )
                 ))}
               </div>
               <div className="mt-8">
